@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Phone Changer</title>
+    <title>Reclamation</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <style>
@@ -27,8 +27,9 @@
                 var lastName = $("#lastName").val();
                 var email = $("#email").val();
                 var phone = $("#phone").val();
+                var description = $("#description").val();
 
-                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0) {
+                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0 || description.length == 0) {
                     errorMessage.text("All of the fields are required.");
                     error.show();
                 }
@@ -41,6 +42,7 @@
                             lastName: lastName,
                             email: email,
                             phone: phone
+                            description: description
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -49,6 +51,7 @@
                             $("#lastName").val("");
                             $("#email").val("");
                             $("#phone").val("");
+                            $("#description").val("");
                             $("#messageMessage").text("Record updated!");
                             $("#message").show();
                         },
@@ -67,7 +70,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Phone Number Changer</a>
+                <a class="navbar-brand" href="/">Reclamation</a>
             </div>
         </div>
     </nav>
@@ -76,7 +79,7 @@
         <form id="phoneChangerForm" action="/update" method="post" style="width: 400px">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Update Your Phone Number</h3>
+                    <h3 class="panel-title">Reclamation</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -95,6 +98,10 @@
                         <label for="phone">Phone</label>
                         <input type="tel" class="form-control" id="phone" placeholder="New Phone Number" required>
                     </div>
+                    <div class="form-group">
+                        <label for="description">Phone</label>
+                        <input type="text" class="form-control" id="description" placeholder="votre avis" required>
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <div id="message" class="alert alert-info" role="alert" style="display: none;">
@@ -106,7 +113,7 @@
                         <span class="sr-only">Error:</span>
                         <span id="errorMessage"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Phone Number</button>
+                    <button type="submit" class="btn btn-primary">creation de votre Reclamation</button>
                 </div>
             </div>
         </form>
