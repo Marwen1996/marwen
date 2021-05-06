@@ -12,11 +12,14 @@ app.use(bodyParser.json());
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
-       
-            function(err, result) { 
+        if (err) console.log(err);
+        conn.query(
+            'UPDATE salesforce.Contact SET Phone = $1, MobilePhone = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
+            [req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+            function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Feedback__c (Name, First_Name__c, Last_Name__c, Email__c, Phone__c,Rate__c, Free_space__c) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-                  [req.body.name.trim(), req.body.firstName__c.trim(), req.body.lastName__c.trim(), req.body.email__c.trim(),req.body.phone__c.trim(),req.body.rate__c.trim(),req.body.free_space__c.trim() ],
+                  conn.query('INSERT INTO salesforce.Contact (Phone, MobilePhone, FirstName, LastName, Email) VALUES ($1, $2, $3, $4, $5)',
+                  [req.body.phone.trim(), req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
                   function(err, result) {
                     done();
                     if (err) {
@@ -34,7 +37,7 @@ app.post('/update', function(req, res) {
                     res.json(result);
                 }
             }
-        
+        );
     });
 });
 
