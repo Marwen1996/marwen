@@ -12,10 +12,7 @@ app.use(bodyParser.json());
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
-        if (err) console.log(err);
-        conn.query(
-            'UPDATE salesforce.Feedback__c SET Name = $1, First_Name__c = $2 , Last_Name__c = $3 , 	Email__c = $4 , Phone__c = $5 , Rate__c = $6 , 	Free_space__c = $7',
-            [req.body.name.trim(), req.body.firstName__c.trim(), req.body.lastName__c.trim(), req.body.email__c.trim(),req.body.phone__c.trim(),req.body.rate__c.trim(),req.body.free_space__c.trim() ],
+       
             function(err, result) { ,
                 if (err != null || result.rowCount == 0) {
                   conn.query('INSERT INTO salesforce.Feedback__c (Name, First_Name__c, Last_Name__c, Email__c, Phone__c,Rate__c, Free_space__c) VALUES ($1, $2, $3, $4, $5, $6, $7)',
@@ -37,7 +34,7 @@ app.post('/update', function(req, res) {
                     res.json(result);
                 }
             }
-        );
+        
     });
 });
 
