@@ -14,12 +14,12 @@ app.post('/update', function(req, res) {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'UPDATE salesforce.Contact SET feedback_c = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
-            [req.body.feedback_c.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+            'UPDATE salesforce.Contact SET 	Description = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
+            [req.body.description.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Contact (feedback_c, FirstName, LastName, Email) VALUES ($1, $2, $3, $4)',
-                  [req.body.feedback_c.trim(), req.body.feedback_c.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+                  conn.query('INSERT INTO salesforce.Contact (Description, FirstName, LastName, Email) VALUES ($1, $2, $3, $4)',
+                  [req.body.description.trim(), req.body.description.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
                   function(err, result) {
                     done();
                     if (err) {
