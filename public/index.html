@@ -26,9 +26,9 @@
                 var firstName = $("#firstName").val();
                 var lastName = $("#lastName").val();
                 var email = $("#email").val();
-                var phone = $("#phone").val();
+                var description = $("#description").val();
 
-                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0) {
+                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || description.length == 0) {
                     errorMessage.text("All of the fields are required.");
                     error.show();
                 }
@@ -40,7 +40,7 @@
                             firstName: firstName,
                             lastName: lastName,
                             email: email,
-                            phone: phone
+                            description: description
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -48,7 +48,7 @@
                             $("#firstName").val("");
                             $("#lastName").val("");
                             $("#email").val("");
-                            $("#phone").val("");
+                            $("#description").val("");
                             $("#messageMessage").text("Record updated!");
                             $("#message").show();
                         },
@@ -92,8 +92,8 @@
                         <input type="email" class="form-control" id="email" placeholder="For verification" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="New Phone Number" required>
+                        <label for="phone">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="New Phone Number" required>
                     </div>
                 </div>
                 <div class="panel-footer">
