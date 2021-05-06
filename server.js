@@ -14,12 +14,12 @@ app.post('/update', function(req, res) {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'UPDATE salesforce.Feedback__c SET Phone = $1, MobilePhone = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
-            [req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+            'UPDATE salesforce.Feedback__c SET Phone__c = $1, MobilePhone__c = $1 WHERE LOWER(First_Name__c) = LOWER($2) AND LOWER(	Last_Name__c) = LOWER($3) AND LOWER(Email__c) = LOWER($4) AND LOWER(Rate__c) = LOWER($5) AND LOWER(Free_space__c) = LOWER($6) AND LOWER(Name) = LOWER($7) ',
+            [req.body.phone__c.trim(), req.body.first_name__c.trim(), req.body.last_name__c.trim(), req.body.email__c.trim(),req.body.name.trim(),req.body.rate__c.trim(),req.body.Free_space__c.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Contact (Phone, MobilePhone, FirstName, LastName, Email) VALUES ($1, $2, $3, $4, $5)',
-                  [req.body.phone.trim(), req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+                  conn.query('INSERT INTO salesforce.Feedback__c (Phone__c, MobilePhone__c, First_Name__c, Last_Name__c, Email__c,Name, Rate__c, Free_space__c) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+                  [req.body.phone__c.trim(), req.body.phone__c.trim(), req.body.first_name__c.trim(), req.body.last_name__c.trim(), req.body.email__c.trim(),req.body.name.trim(),req.body.rate__c.trim(),req.body.Free_space__c.trim()],
                   function(err, result) {
                     done();
                     if (err) {
