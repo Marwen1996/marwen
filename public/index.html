@@ -27,9 +27,8 @@
                 var lastName = $("#lastName").val();
                 var email = $("#email").val();
                 var phone = $("#phone").val();
-				var feedback = $("#feedback").val();
 
-                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0 || feedback.length == 0) {
+                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0) {
                     errorMessage.text("All of the fields are required.");
                     error.show();
                 }
@@ -42,7 +41,6 @@
                             lastName: lastName,
                             email: email,
                             phone: phone
-							feedback: feedback
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -51,7 +49,6 @@
                             $("#lastName").val("");
                             $("#email").val("");
                             $("#phone").val("");
-							$("#feedback").val("");
                             $("#messageMessage").text("Record updated!");
                             $("#message").show();
                         },
@@ -96,11 +93,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="For verification" required>
-                    </div>
-					 <div class="form-group">
-                        <label for="feedback">feedback</label>
-                        <input type="tel" class="form-control" id="feedback" placeholder="New Phone Number" required>
+                        <input type="tel" class="form-control" id="phone" placeholder="New Phone Number" required>
                     </div>
                 </div>
                 <div class="panel-footer">
